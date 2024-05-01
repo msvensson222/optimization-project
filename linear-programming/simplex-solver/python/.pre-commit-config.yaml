@@ -1,0 +1,33 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.3.4
+    hooks:
+      - id: ruff
+        args: [--fix, --extend-select, I, --exit-non-zero-on-fix]
+      - id: ruff-format
+        types_or: [ python, pyi, jupyter ]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      -   id: trailing-whitespace
+      -   id: check-ast
+      -   id: check-builtin-literals
+      -   id: check-case-conflict
+      -   id: check-docstring-first
+      -   id: check-executables-have-shebangs
+      -   id: check-json
+      -   id: check-merge-conflict
+      -   id: check-shebang-scripts-are-executable
+      -   id: check-symlinks
+      -   id: check-yaml
+      -   id: debug-statements
+      -   id: detect-private-key
+
+  - repo: https://github.com/sirwart/ripsecrets
+    rev: v0.1.7
+    hooks:
+      - id: ripsecrets
+        args:
+        - --additional-pattern="^[a-f0-9]+-[a-f0-9]+-[a-f0-9]+-[a-f0-9]+$"
+        - --additional-pattern="^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"

@@ -1,0 +1,62 @@
+[tool.poetry]
+package-mode = false
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pydantic = "2.6.4"
+pandas = "2.2.1"
+scipy = "1.11.4"
+numpy = "1.26.2"
+pytest-benchmark = "^4.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.1.1"
+ruff = "^0.3.7"
+pre-commit = "^3.7.0"
+pandas-stubs = "^2.2.1.240316"
+pylint = "^3.1.0"
+ipykernel = "^6.29.4"
+matplotlib = "^3.8.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+markers = [
+    "unit: mark a test as a unit test.",
+    "e2e: mark a test as an e2e test.",
+    "benchmark: mark a test as a benchmark test.",
+]
+
+[tool.ruff]
+line-length = 100 # The formatter wraps lines at a length of 100
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+check_untyped_defs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_calls = true
+disallow_any_generics = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+
+[[tool.mypy.overrides]]
+module = [
+    "mypy-scipy.optimize.*"
+]
+ignore_missing_imports = true
+
+[tool.pylint.main]
+max-line-length = 120
+disable = [
+  "missing-module-docstring",
+]
