@@ -51,7 +51,7 @@ warn_no_return = true
 
 [[tool.mypy.overrides]]
 module = [
-    "mypy-scipy.optimize.*"
+    "scipy.optimize"
 ]
 ignore_missing_imports = true
 
